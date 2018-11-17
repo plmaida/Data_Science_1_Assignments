@@ -10,3 +10,8 @@ The system takes a few minutes to initialize, given the data loading and model t
 It is worth noting that many of the packages described above, and which are imported in our code, might require installation before the Dash can run properly. All of those can be installed quickly with simple pip install commands.
 
 Ideally, the program should be restarted every day. The reason for this is that it allows the classifier to be retrained on a new dataset that includes the previous day.
+
+This was worked on with a group member. 
+References: quandl.com/data/ODA/POILWTI_USD-WTI-Crude-Oil-Price
+            https://markets.businessinsider.com/commodities/oil-price?type=wti
+            
