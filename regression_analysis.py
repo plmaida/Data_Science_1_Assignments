@@ -6,11 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 boston = datasets.load_boston()
-#print boston.target
-#print boston.data
-#print np.shape(boston.target)
 
-#dummy = raw_input("press the <ENTER> key to continue") 
 #------------------------------define the regression model-------------------------------------------------
 def regression(b,x):
 	y = b[0]
@@ -24,13 +20,7 @@ def regression(b,x):
 data = boston.data
 target = boston.target
 
-#print data
 target = np.array(target)
-#print target
-#print np.shape(target)
-
-#dummy = raw_input("press the <ENTER> key to continue") 
-
 trainingX = []
 trainingY = []
 
@@ -55,11 +45,6 @@ for a in range(0, len(data)):
 			min_data[l] = data[a][l]
 		if data[a][l] > max_data[l]:
 			max_data[l] = data[a][l]
-#dummy = raw_input("press the <ENTER> key to continue") 		
-#print "The minimum values are: ", min_data
-#print "The max values are: ", max_data
-#print "Now able to normalize"
-#dummy = raw_input("press the <ENTER> key to continue") 
 
 #use a loop to normalize every value in the table by scaling it to the range 0..1
 for a in range(0, len(data)):
@@ -69,8 +54,6 @@ for a in range(0, len(data)):
 		norm = np.float64(norm)
 		temp_norm.append(norm)
 	data_norm.append(temp_norm)
-#print "Here is the normalized data", data_norm
-#print np.shape(data_norm)
 
 #-----------------------------------------------------------------Normalize the target--------------------------------------------------------------------------------
 
@@ -82,28 +65,12 @@ for a in range(0, len(data)):
 		min_target = target[a] 
 	if target[a] > max_target:
 		max_target = target[a]
-#dummy = raw_input("press the <ENTER> key to continue") 		
-#print "The minimum values are: ", min_target
-#print "The max values are: ", max_target
-#print "Now able to normalize"
-#dummy = raw_input("press the <ENTER> key to continue") 
 
 #use a loop to normalize every value in the table by scaling it to the range 0..1
 for a in range(0, len(target)):
 	norm = (target[a] - min_target)/(max_target - min_target)
 	target_norm.append(norm)
-#plot the data
 
-#print "this is the normalized feature variable"
-#dummy = raw_input("press the <ENTER> key to continue") 
-#print  data_norm
-#print np.shape(data_norm)
-#print "this is the normalized target variable"
-#dummy = raw_input("press the <ENTER> key to continue") 
-#print target_norm
-#print x.shape()
-
-#dummy = raw_input("press the <ENTER> key to continue") 
 data_norm = np.array(data_norm)
 target_norm = np.array(target_norm)
 
@@ -122,7 +89,6 @@ for i in range(0, data_norm.shape[0]):
 		#print "putting row", i, " ", newRow, "to training feature vector"
 	
 print "Number of rows in the test vector is: ", testcount
-#dummy = raw_input("press the <ENTER> key to continue")
 
 def rmse(predictions, targets):
 	#n = len(targets)
@@ -149,11 +115,7 @@ learning_rate = 0.00001
 epoch = 0
 epoch_max = 10
 b = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-#print trainingX
-#dummy = raw_input("press the <ENTER> key to continue")
-#print trainingY
-#dummy = raw_input("press the <ENTER> key to continue")
-#print b
+
 prediction = []
 epoch_list = []
 rmse_list = []
@@ -162,16 +124,15 @@ while(lr<6):
 	while(epoch <= epoch_max):
 		for i in range(0, len(trainingX)):
 			error = regression(b, trainingX[i]) - trainingY[i]
-			#print error
+			
 			#compute the learning rate for this data point
 			b[0] = b[0] - learning_rate*error
 			#print b[0]
 			for r in range(1, 13):
 				b[r] = b[r] - learning_rate*error*trainingX[i][r]
-				#print "Epoch: ", epoch, "LearningRate: ", learning_rate, "Error: ", error  				
+				 				
 		predictions = []
-		#print "coefficients calculated: ", b, "epoch is ", epoch
-		#dummy = raw_input("press the <ENTER> key to continue")		
+\	
 		#calculate the prediction of Y with testX (previously unseen data)		
 		for j in range(0, len(testX)):
 			#print testX[j]
@@ -182,11 +143,7 @@ while(lr<6):
 		prediction = []
 		predictions = np.array(predictions)
 		predictions = np.transpose(predictions)
-		#print "Here are the predictions", predictions
-		#print np.shape(predictions)
-		#print len(predictions)
-		#dummy = raw_input("press the <ENTER> key to continue")
-		#for i in range(0,len(testY)):
+		
 		#check the prediciton against the testY values to calculate RMSE
 		rmse_var = rmse(predictions, testY)
 			#rmse = np.int32(rmse)
