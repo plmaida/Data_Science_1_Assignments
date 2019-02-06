@@ -33,17 +33,6 @@ def naive_bayes(condition_data, data, condition_target, target, x):
         x.append(prob)
     return x
 
-##def countif_yes(condition, data, k):
-    #count the probability of the value being in column
-    #for j in range(0, data.shape[1]):
-##    prob = 0
- ##   for i in range(0, data.shape[0]):
- ##       if(data[i] == condition):
- ##           prob = prob+1
- ##   k.append(prob/data.shape[0])
- ##   return k
-
-
 filename_i = input("What is the name of the file you would like to show: (Flying_Fitness.csv by chance?) ")
 dataset = loadcsv(filename_i)
 print(dataset)
@@ -68,26 +57,16 @@ for a in range(1, dataset.shape[0]):
         trainX.append(newRow)
         trainY.append(float(dataset[a][1]))
 
-print(testY)   
-
-print(testX)
-
 testX = np.array(testX)
 testY = np.array(testY)
 trainX = np.array(trainX)
 trainY = np.array(trainY)
-
-
-print(testX.shape)
-print(trainX.shape)
-print(trainY.shape)
 
 single_prob = []
 nb_list_0 = []
 nb_list_1 = []
 nb_list = []
 yes_no_prob = []
-
 
 print(nb_list)
 
@@ -112,10 +91,7 @@ for i in range(0, len(nb_list_0)):
         nb_list.append(nb_list_0[i])
     else:
         nb_list.append(nb_list_1[i])
-
-print(nb_list)
-print(len(nb_list))
-        
+   
 k = 0
 while k<len(nb_list):
     nb_list2.append(nb_list[k:k+5])
