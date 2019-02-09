@@ -20,23 +20,22 @@ Task 10 is to compare different classifiers and can be found in the classificati
 In order to create the Dendrogram we must first transform the data into useable values. We will first remove data that we do not want. This includes NAME, FIRSTDATE, LASTDATE and PEPSTRFL. We also change the RFA_2A values to numbers. We do all this in pandas. 
  
 We can then create the dendrogram:
-![image.png](attachment:image.png)
+![dendogram](https://user-images.githubusercontent.com/38801847/52523737-80c01580-2c62-11e9-8018-f7abd6392804.png)
 
 ### Creating the Elbow Analysis
 This is done in the same manner as above and is shown below:
-![image.png](attachment:image.png)
+![elbow](https://user-images.githubusercontent.com/38801847/52523699-127b5300-2c62-11e9-8cb2-67e7b7523599.png)
 
 ### Sorting by Name
 After looking through the data it is hard to differentiate people’s names, as there are the Jr. Sr. and III. Some people have middle initials as well. In order to solve this I found a nameparser online that can look at human names. I downloaded the HumanName parser and used this to get the last name of each person. Because of the way the HumanName parser works I had to return to the original dataframe that included missing values and then re-drop the indexes that we found with missing values.
 
 Using iloc[0:10] and [20000:20010] we can see that the sort worked correctly. 
-![image.png](attachment:image.png)
-
+![sorted](https://user-images.githubusercontent.com/38801847/52523715-4b1b2c80-2c62-11e9-9127-2d1c623e1eb8.png)
 
 ## Classification
 The following are outputs of a run of the classification function
 
-![Comparison](/viz/comparison_graphs.PNG)
+![comparison_graphs](https://user-images.githubusercontent.com/38801847/52523649-997bfb80-2c61-11e9-9c58-591cd0df33dd.PNG)
 
 The accuracy scores are high and seem to imply that the decision tree would be the best option; however, the Naïve Bayes classifier has a better area under the curve and is therefore the classifier that we would want to use. 
 
