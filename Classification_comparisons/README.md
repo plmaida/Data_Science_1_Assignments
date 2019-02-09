@@ -24,7 +24,7 @@ We can then create the dendrogram:
 
 ### Creating the Elbow Analysis
 This is done in the same manner as above and is shown below:
-![image.png](attachment:image.png)
+![elbow](https://user-images.githubusercontent.com/38801847/52523699-127b5300-2c62-11e9-8cb2-67e7b7523599.png)
 
 ### Sorting by Name
 After looking through the data it is hard to differentiate people’s names, as there are the Jr. Sr. and III. Some people have middle initials as well. In order to solve this I found a nameparser online that can look at human names. I downloaded the HumanName parser and used this to get the last name of each person. Because of the way the HumanName parser works I had to return to the original dataframe that included missing values and then re-drop the indexes that we found with missing values.
