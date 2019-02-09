@@ -1,4 +1,6 @@
-## This folder contains two different projects. 
+### Overview
+
+This folder contains two different projects with the same goal. The goal being to attempt to cluster a dataset using euclidian distances and centroids to match the scipy dendrogram package. 
 
 #### 2 Features
 The first is on a provided dataset to show clustering using euclidean distance. Running python Kmeans_clustering_and_dendogram.py -f dataset_for_kmeans.csv. 
@@ -8,14 +10,13 @@ Using the dendrogram function gives the following Dendrogram:
 
 It should be noted that the Dendrogram does not necessarily provide the best view; however, the height increases significanlty.
 
-We want to know if the written code was able to determine a similar result to the built-in scipy dendrogram function. 
 A view of the scipy dendrogram function can be seen here and shows the number of items per cluster:
 ![dendrogram with 3 lines](https://user-images.githubusercontent.com/38801847/52526790-77e43980-2c8c-11e9-9a8c-30e07c25369e.jpg)
 
 The resulting code using euclidean distance and centroids were able to determine a very similar result:
 ![kmeans](https://user-images.githubusercontent.com/38801847/52526935-6dc33a80-2c8e-11e9-8d35-ee8d3f4ef266.PNG)
 
-# Titanic Dataset
+#### Titanic Dataset
 A similar method was used on the second dataset (the titanic dataset). This file runs using python titanic_kmeans.py. The difference is mainly in the preprocessing of the data, as there are 6 features when compared to 2. 
 
 The resulting dendrogram is shown here:
