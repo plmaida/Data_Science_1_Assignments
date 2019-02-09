@@ -1,5 +1,6 @@
-This folder contains two different projects. 
+## This folder contains two different projects. 
 
+#### 2 Features
 The first is on a provided dataset to show clustering using euclidean distance. Running python Kmeans_clustering_and_dendogram.py -f dataset_for_kmeans.csv. 
 
 Using the dendrogram function gives the following Dendrogram: 
@@ -14,7 +15,8 @@ A view of the scipy dendrogram function can be seen here and shows the number of
 The resulting code using euclidean distance and centroids were able to determine a very similar result:
 ![kmeans](https://user-images.githubusercontent.com/38801847/52526935-6dc33a80-2c8e-11e9-8d35-ee8d3f4ef266.PNG)
 
-A similar method was used on the second dataset (the titanic dataset). This file runs using python titanic_kmeans.py
+# Titanic Dataset
+A similar method was used on the second dataset (the titanic dataset). This file runs using python titanic_kmeans.py. The difference is mainly in the preprocessing of the data, as there are 6 features when compared to 2. 
 
 The resulting dendrogram is shown here:
 ![dendrogram_q2](https://user-images.githubusercontent.com/38801847/52526968-1a9db780-2c8f-11e9-9861-0ca9c39a3563.jpg)
