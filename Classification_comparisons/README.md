@@ -36,7 +36,7 @@ Using iloc[0:10] and [20000:20010] we can see that the sort worked correctly.
 ## Classification
 The following are outputs of a run of the classification function
 
-![image.png](attachment:image.png)
+![Comparison](/viz/comparison_graphs.png)
 
 The accuracy scores are high and seem to imply that the decision tree would be the best option; however, the Naïve Bayes classifier has a better area under the curve and is therefore the classifier that we would want to use. 
 
