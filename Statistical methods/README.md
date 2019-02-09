@@ -1,2 +1,2 @@
-# Machine_Learning_Projects
-Repository for some first attempts at machine learning
+# Statistical Methods
+Repository for some first attempts at using machine learning techniques. 
