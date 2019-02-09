@@ -1,6 +1,6 @@
 This folder contains two different projects. 
 
-The first is one a provided dataset to show clustering using euclidean distance. Running python Kmeans_clustering_and_dendogram.py -f dataset_for_kmeans.csv. 
+The first is on a provided dataset to show clustering using euclidean distance. Running python Kmeans_clustering_and_dendogram.py -f dataset_for_kmeans.csv. 
 
 Using the dendrogram function gives the following Dendrogram: 
 ![dendrogram_q1](https://user-images.githubusercontent.com/38801847/52526779-58e5a780-2c8c-11e9-9dce-8e5797c52474.jpg)
