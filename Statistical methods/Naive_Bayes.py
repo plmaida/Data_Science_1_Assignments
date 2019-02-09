@@ -1,7 +1,7 @@
 #Create a Naive_Bayes Classifier from a given csv data file and use skLearn to create the ROC.
 import csv
 import numpy as np
-from sklearn import metrics 
+from sklearn import metrics
 import matplotlib.pyplot as plt
 
 def loadcsv(filename):
@@ -11,14 +11,14 @@ def loadcsv(filename):
     for i in range(1, len(dataset)):
         dataset[i] = [float(x) for x in dataset[i]]
     return dataset
-    
+
 def naive_bayes(condition_data, data, condition_target, target, x):
     #count the probability of the value being in column when the target is either 0 or 1
     for j in range(0, data.shape[1]):
         freq = 0
         h = 0
         prob = 0
-        
+
         for i in range(0, data.shape[0]):
             if(data[i][j] == condition_data):
                 h = h+1
@@ -70,14 +70,14 @@ yes_no_prob = []
 
 print(nb_list)
 
-for i in range(0, 4): 
+for i in range(0, 4):
     #In this scenario we know that the highest value is 3; however, to make this more robust we could ask
     #for the "highest value" OR we could (in the function) determine when each probability hits 1 for each variable
-    #and we could then make it stop once ALL the variables have a total probability of 1. 
-    #For the purposes of this assignment we will leave it as is. 
+    #and we could then make it stop once ALL the variables have a total probability of 1.
+    #For the purposes of this assignment we will leave it as is.
     for j in range(0, 2):
         if j == 0:
-            nb_list_0 = naive_bayes(i, trainX, j, trainY, nb_list_0)    
+            nb_list_0 = naive_bayes(i, trainX, j, trainY, nb_list_0)
         if j == 1:
             nb_list_1 = naive_bayes(i, trainX, j, trainY, nb_list_1)
 
@@ -91,7 +91,7 @@ for i in range(0, len(nb_list_0)):
         nb_list.append(nb_list_0[i])
     else:
         nb_list.append(nb_list_1[i])
-   
+
 k = 0
 while k<len(nb_list):
     nb_list2.append(nb_list[k:k+5])
@@ -134,3 +134,4 @@ print(tpr)
 plt.ylabel("True Positive Rate")
 plt.xlabel("False Positive Rate")
 plt.plot(fpr, tpr, color='darkorange', marker="o", label='ROC curve (area = %0.2f)')
+plt.show()
