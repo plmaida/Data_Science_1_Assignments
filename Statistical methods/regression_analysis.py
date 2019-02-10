@@ -1,5 +1,5 @@
 #Assignment 2 - Question 1 on Boston Housing DataSet from Sklearn
-#Code needs to be cleaned up. Commented out code was used to show work to professor.  
+#Code needs to be cleaned up. Commented out code was used to show work to professor.
 
 from sklearn import datasets
 import numpy as np
@@ -35,7 +35,7 @@ target_norm = []
 table = []
 min_data = [] #previously was a large number, now is the age in the first row of your table
 max_data = []
-for l in range(0, 13):	
+for l in range(0, 13):
 	min_data.append(data[0][l])
 	max_data.append(data[0][l])
 
@@ -62,7 +62,7 @@ max_target = target[0]
 
 for a in range(0, len(data)):
 	if target[a] < min_target:
-		min_target = target[a] 
+		min_target = target[a]
 	if target[a] > max_target:
 		max_target = target[a]
 
@@ -75,9 +75,9 @@ data_norm = np.array(data_norm)
 target_norm = np.array(target_norm)
 
 for i in range(0, data_norm.shape[0]):
-	newRow = []	
-	for a in range(0,13):	
-		newRow.append(data_norm[i][a]) 	
+	newRow = []
+	for a in range(0,13):
+		newRow.append(data_norm[i][a])
 	if(i % 10 == 0):
 		testX.append(newRow)
 		testY1.append(target_norm[i])
@@ -87,12 +87,12 @@ for i in range(0, data_norm.shape[0]):
 		trainingX.append(newRow)
 		trainingY.append(target_norm[i])
 		#print "putting row", i, " ", newRow, "to training feature vector"
-	
-print "Number of rows in the test vector is: ", testcount
+
+print("Number of rows in the test vector is: ", testcount)
 
 def rmse(predictions, targets):
 	#n = len(targets)
-	r = 0	
+	r = 0
 	for i in range(0, len(predictions)):
 		r = r + np.sqrt((predictions[i] - targets[i])**2)
 	#calculate from h
@@ -103,7 +103,7 @@ trainingX = np.array(trainingX)
 trainingY = np.array(trainingY)
 testX = np.array(testX)
 testY.append(testY1)
-testY = np.array(testY) 
+testY = np.array(testY)
 testY = np.transpose(testY)
 #print np.shape(trainingY)
 #print testY
@@ -124,16 +124,15 @@ while(lr<6):
 	while(epoch <= epoch_max):
 		for i in range(0, len(trainingX)):
 			error = regression(b, trainingX[i]) - trainingY[i]
-			
+
 			#compute the learning rate for this data point
 			b[0] = b[0] - learning_rate*error
 			#print b[0]
 			for r in range(1, 13):
 				b[r] = b[r] - learning_rate*error*trainingX[i][r]
-				 				
+
 		predictions = []
-\	
-		#calculate the prediction of Y with testX (previously unseen data)		
+		#calculate the prediction of Y with testX (previously unseen data)
 		for j in range(0, len(testX)):
 			#print testX[j]
 			x = regression(b,testX[j])
@@ -143,28 +142,26 @@ while(lr<6):
 		prediction = []
 		predictions = np.array(predictions)
 		predictions = np.transpose(predictions)
-		
+
 		#check the prediciton against the testY values to calculate RMSE
 		rmse_var = rmse(predictions, testY)
 			#rmse = np.int32(rmse)
-		print "RMSE is: ", rmse_var
+		print("RMSE is: ", rmse_var)
 		epoch_list.append(epoch)
-		rmse_list.append(rmse_var)		
+		rmse_list.append(rmse_var)
 		epoch += 1
-	
-		
+
+
 	savename = "Question 1 "+str(learning_rate)
 	plt.scatter(epoch_list, rmse_list)
 	plt.title("Boston Housing Predictions for "+ str(epoch_max) +" epochs with a learning rate of" + str(learning_rate))
 	plt.xlabel("Prediction Attempt")
 	plt.ylabel("RMSE")
 	plt.savefig(str(savename)+".png")
-	plt.clf()		
+	plt.clf()
 	learning_rate = learning_rate*10
-	print "The learning rate is: ", learning_rate	
+	print("The learning rate is: ", learning_rate)
 	epoch = 0
 	epoch_list = []
 	rmse_list = []
 	lr += 1
-
-
