@@ -14,11 +14,14 @@ Using the Naive Bayes function created and sklearn's ROC function the following 
 ## Creating a database
 Write a python script that reads in the csv data file and stores it in a database.
 
+### Answer
+Database is put into flyfit.db as the first table flyfit
+
 ## Use the Database
 Write a script that opens up a database and uses the data to train and plot the ROC curve for the classifier you implemented in part a) . Reuse your code from parts A and B as much as possible by encapsulating the functionality in functions.
 
 ### Answer
-Combining the two python scripts into one gives the following curve:
+Combine the two python script. Because we want to do this task in one go we create a new table (flyfit2) in the same flyfit.db. This is done just to show that this script could run on its own. Using this we get the same curve:
 ![roc](https://user-images.githubusercontent.com/38801847/52601262-21156600-2e2c-11e9-9f08-25835c41bc1b.png)
 
 As we can expect the ROC for question A and C are the same. This equivalency is because it uses the same training set and test set. 
