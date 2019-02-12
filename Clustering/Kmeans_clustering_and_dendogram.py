@@ -53,9 +53,8 @@ else:
 if usingFile == True:
     # attempt to open and read out of the file
     print("DEBUG: the file name entered was: ", options.fileName)
-    file = open(
-        options.fileName, "r"
-    )  # "r" means we are opening the file for reading
+    file = open(options.fileName, "r")
+    # "r" means we are opening the file for reading
     # write a loop that will read one line from the file at a time..
     for line in file:
         processText(line)
@@ -73,9 +72,8 @@ dataset = np.array(dataset)
 print(dataset)
 dummy = input("Press Enter to normalize")
 data_norm = []
-min_data = (
-    []
-)  # previously was a large number, now is the age in the first row of your table
+min_data = []
+# previously was a large number, now is the age in the first row of your table
 max_data = []
 for l in range(0, 2):
     min_data.append(dataset[0][l])
@@ -160,25 +158,26 @@ print(point)
 it = [5, 10, 100]
 for b in range(0, 101):
     cltlist = []
-    for c in range(0, k):  # create a new list of lists with k amount of lists
+    for c in range(0, k):
+        # create a new list of lists with k amount of lists
         empty = []
         cltlist.append(empty)
 
-    for a in range(0, len(dataset)):  # check for all points in the data set
+    for a in range(0, len(dataset)):
+        # check for all points in the data set
         dist = []
-        for center in range(
-            0, k
-        ):  # calculate a list of distances for each data point and centroid
+        for center in range(0, k):
+            # calculate a list of distances for each data point and centroid
             dist.append(euclid(dataset[a], centroid[center]))
         for clt in range(0, k):  # put it in the correct cluster
             if min(dist) == dist[clt]:
                 cltlist[clt].append(dataset[a])
 
-    for q in range(
-        0, k
-    ):  # find the new aveage of each cluster and replace the old centroid
+    for q in range(0, k):
+        # find the new aveage of each cluster and replace the old centroid
         centroid[q] = sum(cltlist[q]) / len(cltlist[q])
-    if b in it:  # put in for the requested iterations
+    if b in it:
+        # put in for the requested iterations
         for clt in range(0, k):
             point[clt].append(centroid[clt])
             print(
@@ -195,9 +194,8 @@ for i in range(0, k):
 plt.title("Moving Centroids")
 
 for i in range(0, k):
-    plt.scatter(
-        point[i][:][0], point[i][:][1]
-    )  # plot the moving centroids. From the dataset it initializes quickly and therefore there are only a few data points
+    plt.scatter(point[i][:][0], point[i][:][1])  
+    # plot the moving centroids. From the dataset it initializes quickly and therefore there are only a few data points
 plt.xlabel("x values")
 plt.ylabel("y values")
 plt.savefig("kmeans_points.jpg")

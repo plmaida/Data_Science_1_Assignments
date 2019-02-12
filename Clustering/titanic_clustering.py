@@ -29,7 +29,8 @@ for i in range(0, len(features)):
         float(features[i]["SiblingsAndSpouses"])
         + float(features[i]["ParentsAndChildren"]),
         float(features[i]["Survived"]),
-    ]  # include survived in the features
+    ]
+    # include survived in the features
     temprow.append(feat)
     # temptarg.append(targ)
     for b in range(0, 5):
@@ -68,9 +69,8 @@ dataset = np.array(dataset)
 print(dataset)
 dummy = input("Press Enter to normalize")
 data_norm = []
-min_data = (
-    []
-)  # previously was a large number, now is the age in the first row of your table
+min_data = []
+ # previously was a large number, now is the age in the first row of your table
 max_data = []
 for l in range(0, 6):
     min_data.append(dataset[0][l])
@@ -134,8 +134,9 @@ k = np.int32(k)
 plt.figure(3)
 centroid = []
 point = []
-# for iteration in range(0, 100):
-for i in range(0, k):  # use three based on the dendrogram shown in part a
+
+for i in range(0, k):
+    # use three based on the dendrogram shown in part a
     centroid.append(dataset[random.randint(0, len(dataset))])
     point.append([])
     point[i].append(centroid[i])
@@ -143,24 +144,24 @@ for i in range(0, k):  # use three based on the dendrogram shown in part a
 it = [5, 10, 100]
 for b in range(0, 101):
     cltlist = []
-    for c in range(0, k):  # create a new list of lists with k amount of lists
+    for c in range(0, k):
+        # create a new list of lists with k amount of lists
         empty = []
         cltlist.append(empty)
 
-    for a in range(0, len(dataset)):  # check for all points in the data set
+    for a in range(0, len(dataset)):
+        # check for all points in the data set
         dist = []
-        for center in range(
-            0, k
-        ):  # calculate a list of distances for each data point and centroid
+        for center in range(0, k):
+            # calculate a list of distances for each data point and centroid
             dist.append(euclid(dataset[a], centroid[center]))
 
         for clt in range(0, k):  # put it in the correct cluster
             if min(dist) == dist[clt]:
                 cltlist[clt].append(dataset[a])
 
-    for q in range(
-        0, k
-    ):  # find the new aveage of each cluster and replace the old centroid
+    for q in range(0, k):
+        # find the new aveage of each cluster and replace the old centroid
         centroid[q] = sum(cltlist[q]) / len(cltlist[q])
     if b in it:  # put in for the requested iterations
         for clt in range(0, k):

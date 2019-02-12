@@ -34,9 +34,8 @@ testY1 = []
 data_norm = []
 target_norm = []
 table = []
-min_data = (
-    []
-)  # previously was a large number, now is the age in the first row of your table
+min_data = [] 
+# previously was a large number, now is the age in the first row of your table
 max_data = []
 for l in range(0, 13):
     min_data.append(data[0][l])
