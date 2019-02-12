@@ -4,49 +4,81 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import sqlite3
 
+
 def loadcsv(filename):
-    #Load the csv file using an imputed name
+    # Load the csv file using an imputed name
     lines = csv.reader(open(filename, "r"))
     dataset = list(lines)
     for i in range(1, len(dataset)):
         dataset[i] = [float(x) for x in dataset[i]]
     return dataset
 
-filename_i = input("What is the name of the file you would like to show: (Flying_Fitness.csv by chance?) ")
+
+filename_i = input(
+    "What is the name of the file you would like to show: (Flying_Fitness.csv by chance?) "
+)
 dataset2 = loadcsv(filename_i)
 data = sqlite3.connect("fly_fit.db")
 d = data.cursor()
-d.execute("CREATE TABLE flyfit2(obs INTEGER, TestResVar1 INTEGER, Var2 INTEGER, Var3 INTEGER, Var4 INTEGER, Var5 INTEGER, Var6 INTEGER)")
+d.execute(
+    "CREATE TABLE flyfit2(obs INTEGER, TestResVar1 INTEGER, Var2 INTEGER, Var3 INTEGER, Var4 INTEGER, Var5 INTEGER, Var6 INTEGER)"
+)
 
 for i in range(0, len(dataset2)):
     d1 = tuple(dataset2[i])
-    #print(d1)
+    # print(d1)
     d.execute("INSERT INTO flyfit2 VALUES(?,?,?,?,?,?,?)", d1)
 d.execute("SELECT * from flyfit2")
-print(*d.fetchall(), sep='\n')
+print(*d.fetchall(), sep="\n")
+
 
 def naive_bayes(condition_data, data, condition_target, target, x):
-    #count the probability of the value being in column when the target is either 0 or 1
+    # count the probability of the value being in column when the target is either 0 or 1
     for j in range(0, data.shape[1]):
         freq = 0
         h = 0
         prob = 0
 
         for i in range(0, data.shape[0]):
-            if(data[i][j] == condition_data):
-                h = h+1
-            if(data[i][j] == condition_data and target[i] == condition_target):
-                freq = freq+1
+            if data[i][j] == condition_data:
+                h = h + 1
+            if data[i][j] == condition_data and target[i] == condition_target:
+                freq = freq + 1
         if h == 0:
             prob = 0
-            print("condition data", condition_data, "---", "condition target", condition_target, "---" ,freq, "----" ,h, "---", prob)
+            print(
+                "condition data",
+                condition_data,
+                "---",
+                "condition target",
+                condition_target,
+                "---",
+                freq,
+                "----",
+                h,
+                "---",
+                prob,
+            )
         else:
-            prob = freq/(h)
-            print("condition data", condition_data, "---", "condition target", condition_target, "---" ,freq, "----" ,h, "---", prob)
+            prob = freq / (h)
+            print(
+                "condition data",
+                condition_data,
+                "---",
+                "condition target",
+                condition_target,
+                "---",
+                freq,
+                "----",
+                h,
+                "---",
+                prob,
+            )
         x.append(prob)
     return x
 
-d.execute('SELECT * FROM flyfit2')
+
+d.execute("SELECT * FROM flyfit2")
 datatopy = d.fetchall()
 
 
@@ -63,7 +95,7 @@ for a in range(1, dataset.shape[0]):
     newRow = []
     for i in range(2, 7):
         newRow.append(float(dataset[a][i]))
-    if(a % 5 == 0):
+    if a % 5 == 0:
         testX.append(newRow)
         testY.append(float(dataset[a][1]))
     else:
@@ -94,10 +126,10 @@ yes_no_prob = []
 print(nb_list)
 
 for i in range(0, 4):
-    #In this scenario we know that the highest value is 3; however, to make this more robust we could ask
-    #for the "highest value" OR we could (in the function) determine when each probability hits 1 for each variable
-    #and we could then make it stop once ALL the variables have a total probability of 1.
-    #For the purposes of this assignment we will leave it as is.
+    # In this scenario we know that the highest value is 3; however, to make this more robust we could ask
+    # for the "highest value" OR we could (in the function) determine when each probability hits 1 for each variable
+    # and we could then make it stop once ALL the variables have a total probability of 1.
+    # For the purposes of this assignment we will leave it as is.
     for j in range(0, 2):
         if j == 0:
             nb_list_0 = naive_bayes(i, trainX, j, trainY, nb_list_0)
@@ -111,7 +143,7 @@ nb_list2_1 = []
 
 
 for i in range(0, len(nb_list_0)):
-    if(nb_list_0[i] >= nb_list_1[i]):
+    if nb_list_0[i] >= nb_list_1[i]:
         nb_list.append(nb_list_0[i])
     else:
         nb_list.append(nb_list_1[i])
@@ -120,17 +152,17 @@ print(nb_list)
 print(len(nb_list))
 
 k = 0
-while k<len(nb_list):
-    nb_list2.append(nb_list[k:k+5])
-    nb_list2_0.append(nb_list_0[k:k+5])
-    nb_list2_1.append(nb_list_1[k:k+5])
-    k+=5
+while k < len(nb_list):
+    nb_list2.append(nb_list[k : k + 5])
+    nb_list2_0.append(nb_list_0[k : k + 5])
+    nb_list2_1.append(nb_list_1[k : k + 5])
+    k += 5
 
 print(nb_list2_1)
 print(nb_list2_0)
 
-#Now we have 8 tests and we want to determine the chance of it predicting the test result correctly
-#Therefore we will look at the test data to determine if the prediction is correct
+# Now we have 8 tests and we want to determine the chance of it predicting the test result correctly
+# Therefore we will look at the test data to determine if the prediction is correct
 
 predict = []
 pred = 1
@@ -143,15 +175,15 @@ for i in range(0, testX.shape[0]):
     prediction = 0
     for j in range(0, testX.shape[1]):
         for condition in range(0, 4):
-            if(testX[i][j] == condition):
-                pred = pred*nb_list2_1[condition][j]
-                pred2 = pred2*nb_list2_0[condition][j]
-    prediction = pred/(pred+pred2)
+            if testX[i][j] == condition:
+                pred = pred * nb_list2_1[condition][j]
+                pred2 = pred2 * nb_list2_0[condition][j]
+    prediction = pred / (pred + pred2)
     predict.append(prediction)
 
 print(predict)
 
-#Create the ROC curve using skLearn
+# Create the ROC curve using skLearn
 
 y = np.array(testY)
 scores = np.array(predict)
@@ -162,7 +194,7 @@ print(tpr)
 plt.ylabel("True Positive Rate")
 plt.xlabel("False Positive Rate")
 
-plt.plot(fpr, tpr, color='darkorange', marker="o", label='ROC curve (area = %0.2f)')
+plt.plot(fpr, tpr, color="darkorange", marker="o", label="ROC curve (area = %0.2f)")
 plt.show()
 d.execute("DROP TABLE flyfit2")
 data.commit()
