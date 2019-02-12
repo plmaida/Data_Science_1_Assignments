@@ -165,7 +165,12 @@ for b in range(0, 101):
     if b in it:  # put in for the requested iterations
         for clt in range(0, k):
             point[clt].append(centroid[clt])
-            print("The size of the cluster at iteration", b, "is: ", len(cltlist[clt]))
+            print(
+                "The size of the cluster at iteration",
+                b,
+                "is: ",
+                len(cltlist[clt]),
+            )
 
     print("iteration", b)
 for i in range(0, k):

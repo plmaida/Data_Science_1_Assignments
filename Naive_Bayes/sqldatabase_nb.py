@@ -194,7 +194,9 @@ print(tpr)
 plt.ylabel("True Positive Rate")
 plt.xlabel("False Positive Rate")
 
-plt.plot(fpr, tpr, color="darkorange", marker="o", label="ROC curve (area = %0.2f)")
+plt.plot(
+    fpr, tpr, color="darkorange", marker="o", label="ROC curve (area = %0.2f)"
+)
 plt.show()
 d.execute("DROP TABLE flyfit2")
 data.commit()

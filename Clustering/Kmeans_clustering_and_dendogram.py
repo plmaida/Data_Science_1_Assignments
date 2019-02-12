@@ -34,7 +34,9 @@ def processText(data):
 # create a new option parser
 parser = optparse.OptionParser()
 # add an option to look for the -f (question 3)
-parser.add_option("-f", "--file", dest="fileName", help="file name to read from")
+parser.add_option(
+    "-f", "--file", dest="fileName", help="file name to read from"
+)
 
 # get the options entered by the user at the terminal
 (options, others) = parser.parse_args()
@@ -51,7 +53,9 @@ else:
 if usingFile == True:
     # attempt to open and read out of the file
     print("DEBUG: the file name entered was: ", options.fileName)
-    file = open(options.fileName, "r")  # "r" means we are opening the file for reading
+    file = open(
+        options.fileName, "r"
+    )  # "r" means we are opening the file for reading
     # write a loop that will read one line from the file at a time..
     for line in file:
         processText(line)
@@ -177,7 +181,12 @@ for b in range(0, 101):
     if b in it:  # put in for the requested iterations
         for clt in range(0, k):
             point[clt].append(centroid[clt])
-            print("The size of the cluster at iteration", b, "is: ", len(cltlist[clt]))
+            print(
+                "The size of the cluster at iteration",
+                b,
+                "is: ",
+                len(cltlist[clt]),
+            )
         print(point)
 
     print("iteration", b)
